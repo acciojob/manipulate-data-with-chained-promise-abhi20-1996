@@ -5,6 +5,6 @@ function arr(a){
 }
 
 arr([1,2,3,4]).then((r)=>r)
-	.then(r=>r.filter(i=>i%2==0))
+	.then(r=>r.filter(i=>i%2===0))
 	.then(r=>r.map(i=>i*2))
-	.then(r=>{document.getElementById("output").innerHTML=r})
+	.then(r=>{document.getElementById("output").innerHTML=r.join(", ")})
