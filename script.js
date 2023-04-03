@@ -1,10 +1,32 @@
-function arr(a){
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{resolve(a)},3000)
-    })
+function manipulateArray(arr) {
+return new Promise((resolve, reject) => {
+setTimeout(() => {
+resolve(arr);
+}, 3000);
+});
 }
 
-arr([1,2,3,4]).then((r)=>r)
-	.then(r=>r.filter(i=>i%2===0))
-	.then(r=>r.map(i=>i*2))
-	.then(r=>{document.getElementById("output").innerHTML=r.join(", ")})
+manipulateArray([1, 2, 3, 4])
+.then((arr) => {
+const filteredArr = arr.filter(num => num % 2 === 0);
+return new Promise((resolve, reject) => {
+setTimeout(() => {
+resolve(filteredArr);
+}, 1000);
+});
+})
+.then((arr) => {
+const multipliedArr = arr.map(num => num * 2);
+return new Promise((resolve, reject) => {
+setTimeout(() => {
+resolve(multipliedArr);
+}, 2000);
+});
+})
+.then((arr) => {
+const outputEl = document.getElementById('output');
+outputEl.textContent = arr.join(', ');
+})
+.catch((err) => {
+console.error(err);
+});
